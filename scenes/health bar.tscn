@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gfx/objects.png" type="Texture" id=1]
-[ext_resource path="res://HBoxContainer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/health bar.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=2]
@@ -63,7 +62,6 @@ stretch_mode = 3
 [node name="health" type="HBoxContainer" parent="."]
 margin_right = 96.0
 margin_bottom = 16.0
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
