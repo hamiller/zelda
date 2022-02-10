@@ -25,6 +25,7 @@ Aufteilung
 	- Speichern/Laden des Zustands
 	- Pause
 	- Übergang von einer Welt in eine andere (mehrere Screens)
+	- Mitbewegen des Sichtfeldes
 
 
 - Gegner
