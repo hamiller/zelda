@@ -24,6 +24,7 @@ Aufteilung
 	- Allgemein der "Level" bauen (Tiles, Gegner)
 	- Speichern/Laden des Zustands
 	- Pause
+	- Übergang von einer Welt in eine andere (mehrere Screens)
 
 
 - Gegner
