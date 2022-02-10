@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const MAX_SPEED = 200
 signal habe_gehauen
+signal player_vector
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
