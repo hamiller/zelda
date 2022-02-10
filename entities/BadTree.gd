@@ -22,8 +22,6 @@ func _on_DetectRadius_body_exited(body):
 	print("Player verlassen")
 	
 func animate(x, y):
-	print(x,y)
-	
 	$AnimatedSprite.playing = !(x==0 && y==0)
 		
 	if(abs(x)>abs(y)):
@@ -40,3 +38,8 @@ func animate(x, y):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_HitRadius_body_entered(body):
+	if body.name == 'Player':
+		body.hit(1)

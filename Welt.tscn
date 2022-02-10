@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/BadTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Welt.gd" type="Script" id=3]
 [ext_resource path="res://scenes/well.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tiles/well.tres" type="TileSet" id=5]
+[ext_resource path="res://scenes/health bar.tscn" type="PackedScene" id=6]
 
 [node name="Welt" type="Node2D"]
 script = ExtResource( 3 )
@@ -29,6 +30,9 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="BadTree" parent="." instance=ExtResource( 1 )]
-position = Vector2( 84, 93 )
+position = Vector2( 226, 111 )
+
+[node name="health bar" parent="." instance=ExtResource( 6 )]
 
 [connection signal="habe_gehauen" from="Player" to="." method="_on_Player_habe_gehauen"]
+[connection signal="player_hit" from="Player" to="health bar" method="_on_Player_player_hit"]

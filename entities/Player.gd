@@ -3,7 +3,9 @@ extends KinematicBody2D
 const MAX_SPEED = 200
 signal habe_gehauen
 signal player_vector
+signal player_hit
 
+var health = 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Ich existiere!")
@@ -31,6 +33,10 @@ func _input(event):
 		print("killlll!!!!")
 		emit_signal("habe_gehauen")
 
+func hit(amount):
+	self.health -= amount
+	print(self.health)
+	emit_signal("player_hit", self.health)
 
 func animate(x, y):
 	if x == 1:
