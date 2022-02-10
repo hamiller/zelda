@@ -1,0 +1,39 @@
+Zelda Spiel
+
+
+1. Einführung in Godot
+
+- Spieler erstellen (tscn Datei)
+	-> Type 'Area2d'
+	-> Add 'AnimatedSprite'
+	-> Add 'CollisionShape2D'
+	-> Attach Node Script
+	-> Change Type to 'KinematicBody2D'
+
+- Rechts im Inspector new Resource 'Atlas Texture'
+	-> Snap Mode Grid, 16px x 16px
+	-> Markieren und speichern als separate Datei
+
+- Pixelart umstellen: 
+	-> Project Settings, General, Display, Window:
+	-> Width 320, Height 176 für das Pixelart-Spiel
+	-> Stretch-Mode: 2d, Darstellung (Test Width, Test heigth) 1280x720
+
+
+- Eingaben des Systems übernehmen
+	-> Projekt Settings, Input Map
+	-> 'func _process(delta):'' <== Aufruf bei jeder Frame-berechnung (gut für movement)
+				var vector = Vector2()
+				if Input.is_action_pressed("move_down"):
+					vector.y += 1
+
+				vector = vector.normalized()
+				position += vector * delta
+				# position ist eine Variable im 
+
+
+	-> 'func _input(event):' <== Aufruf nur bei jedem Ereignis (gut für schoots)
+				if event.is_action_pressed("shoot"):
+					shoot()
+
+
