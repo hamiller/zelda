@@ -15,11 +15,6 @@ func _physics_process(_delta):
 	var current = state_machine.get_current_node()
 	var vector = Vector2.ZERO
 	var hitting
-	if Input.is_action_just_pressed("hack_and_slay"):
-		hitting = true
-		hit_him()
-		#state_machine.stop()
-		return
 	if Input.is_action_pressed("up_pressed"):
 		vector.y += -1
 		state_machine.travel("walk_up")
@@ -38,7 +33,17 @@ func _physics_process(_delta):
 	
 	move_and_slide(vector * MAX_SPEED)
 
-	
+func _input(event):
+	if event.is_action_pressed("hack_and_slay"):
+		emit_signal("habe_gehauen")
+		var target = $RayCast2D.get_collider()
+		if target != null:
+			if target.is_in_group("NPC"):
+				set_process_input(false)
+				target.talk()
+				return
+			if target.is_in_group("ENEMY"):
+				return
 	
 
 func hit_him():
