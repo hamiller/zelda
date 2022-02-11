@@ -23,26 +23,6 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 16, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 32, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 16, 32, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 32, 32, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 32, 16, 32 )
-
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
@@ -83,16 +63,31 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 48, 64, 16, 32 )
 
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 16, 32, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 32, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 32, 16, 32 )
+
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "move_down",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "move_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
@@ -103,6 +98,11 @@ animations = [ {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "move_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "move_right",
 "speed": 5.0
 } ]
 
