@@ -15,11 +15,11 @@ func _physics_process(delta):
 
 func _on_DetectRadius_body_entered(body):
 	player = body
-	print("Player getroffen")
+	print("Player zu sehen")
 
 func _on_DetectRadius_body_exited(body):
 	player = null
-	print("Player verlassen")
+	print("Player nicht mehr zu sehen")
 	
 func animate(x, y):
 	$AnimatedSprite.playing = !(x==0 && y==0)
@@ -39,3 +39,7 @@ func animate(x, y):
 func _on_HitRadius_body_entered(body):
 	if body.name == 'Player':
 		body.hit(1)
+
+func hit():
+	print("bin getroffen")
+	queue_free()

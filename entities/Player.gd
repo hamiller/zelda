@@ -40,8 +40,8 @@ func _input(event):
 	if event.is_action_pressed("hack_and_slay"):
 		emit_signal("habe_gehauen")
 		hitting = true
-		hit_him()
-		print("aaaaaaaaaaaaa")
+		slice()
+		
 		var target = $RayCast2D.get_collider()
 		if target != null:
 			if target.is_in_group("NPC"):
@@ -49,10 +49,11 @@ func _input(event):
 				target.talk()
 				return
 			if target.is_in_group("ENEMY"):
+				target.hit()
 				return
 	
 
-func hit_him():
+func slice():
 	var current = state_machine.get_current_node()
 	# Get motion vector between previous and current position
 	var motion = position - _position_last_frame
@@ -63,7 +64,7 @@ func hit_him():
 		# you can use the angle of the motion.
 		# I came up with this formula last time I needed it:
 		_cardinal_direction = int(4.0 * (motion.rotated(PI / 4.0).angle() + PI) / TAU)
-# Remember our current position for next frame
+	# Remember our current position for next frame
 	_position_last_frame = position
 	# And now you have it!
 	# You can even use it with an array since it's like an index
