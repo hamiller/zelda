@@ -37,7 +37,22 @@ position = Vector2( 96, 104 )
 z_index = 1
 
 [node name="BadTree" parent="." instance=ExtResource( 1 )]
-position = Vector2( 496, 176 )
+position = Vector2( 480, 216 )
+
+[node name="BadTree2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 552, 416 )
+
+[node name="BadTree3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 368, 408 )
+
+[node name="BadTree4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 112, 272 )
+
+[node name="BadTree5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 880, 116 )
+
+[node name="BadTree6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 208, 392 )
 
 [node name="WiseMan" parent="." instance=ExtResource( 7 )]
 position = Vector2( 520, 120 )
@@ -84,7 +99,6 @@ __meta__ = {
 }
 
 [node name="health bar" parent="HUD" instance=ExtResource( 6 )]
-position = Vector2( 224, -8 )
+position = Vector2( 216, 0 )
 
 [connection signal="habe_gehauen" from="Player" to="." method="_on_Player_habe_gehauen"]
-[connection signal="player_hit" from="Player" to="HUD/health bar" method="_on_Player_player_hit"]
