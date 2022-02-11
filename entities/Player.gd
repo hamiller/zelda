@@ -32,13 +32,13 @@ func _input(event):
 		emit_signal("habe_gehauen")
 		var target = $RayCast2D.get_collider()
 		if target != null:
-			print(target)
 			if target.is_in_group("NPC"):
+				set_process_input(false)
 				target.talk()
 				return
 			if target.is_in_group("ENEMY"):
 				return
-				
+
 
 func hit(amount):
 	self.health -= amount

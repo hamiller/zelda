@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/BadTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
@@ -7,13 +7,17 @@
 [ext_resource path="res://tiles/well.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/health bar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/WiseMan.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/Adventurer.tscn" type="PackedScene" id=8]
 
 [node name="Welt" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 126, 46 )
+position = Vector2( 168, 72 )
 z_index = 1
+
+[node name="AnimatedPlayer" parent="." instance=ExtResource( 8 )]
+position = Vector2( 64, 56 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 5 )
@@ -24,21 +28,19 @@ tile_data = PoolIntArray( 0, 16, 0, 1, 16, 0, 2, 16, 0, 3, 16, 0, 4, 16, 0, 5, 1
 [node name="BadTree" parent="." instance=ExtResource( 1 )]
 position = Vector2( 226, 111 )
 
-[node name="health bar" parent="." instance=ExtResource( 6 )]
-
 [node name="WiseMan" parent="." instance=ExtResource( 7 )]
 position = Vector2( 56, 21 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="DialogPopup" type="Popup" parent="CanvasLayer"]
+[node name="DialogPopup" type="Popup" parent="HUD"]
 pause_mode = 2
 margin_right = 40.0
 margin_bottom = 40.0
 popup_exclusive = true
 script = ExtResource( 4 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialogPopup"]
+[node name="ColorRect" type="ColorRect" parent="HUD/DialogPopup"]
 margin_left = 10.0
 margin_top = 115.0
 margin_right = 310.0
@@ -47,7 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NPCName" type="Label" parent="CanvasLayer/DialogPopup"]
+[node name="NPCName" type="Label" parent="HUD/DialogPopup"]
 margin_left = 13.0
 margin_top = 116.0
 margin_right = 81.0
@@ -58,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Dialog" type="Label" parent="CanvasLayer/DialogPopup"]
+[node name="Dialog" type="Label" parent="HUD/DialogPopup"]
 margin_left = 13.0
 margin_top = 132.0
 margin_right = 303.0
@@ -70,5 +72,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="health bar" parent="HUD" instance=ExtResource( 6 )]
+position = Vector2( 224, 0 )
+
 [connection signal="habe_gehauen" from="Player" to="." method="_on_Player_habe_gehauen"]
-[connection signal="player_hit" from="Player" to="health bar" method="_on_Player_player_hit"]
+[connection signal="player_hit" from="Player" to="HUD/health bar" method="_on_Player_player_hit"]

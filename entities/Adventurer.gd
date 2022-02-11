@@ -13,9 +13,6 @@ func _physics_process(_delta):
 	var current = state_machine.get_current_node()
 	var vector = Vector2.ZERO
 	
-	if Input.is_action_just_pressed("hack_and_slay"):
-		state_machine.travel("attack2")
-		return
 	if Input.is_action_pressed("up_pressed"):
 		vector.y = -1
 	if Input.is_action_pressed("down_pressed"):
@@ -32,6 +29,9 @@ func _physics_process(_delta):
 		state_machine.travel("run")
 	vector = vector.normalized()
 	
+	if vector != Vector2.ZERO:	
+		$RayCast2D.cast_to = vector * 8
+		
 	#animate(vector.x, vector.y)
 	move_and_slide(vector * run_speed)
 	#rotation = atan2(vector.y, vector.x)
@@ -39,6 +39,7 @@ func _physics_process(_delta):
 	
 func hurt():
 	state_machine.travel("hurt")
+
 func die():
 	state_machine.travel("ded")
 	set_physics_process(false)
@@ -47,20 +48,10 @@ func die():
 	
 func _input(event):
 	if event.is_action_pressed("hack_and_slay"):
-		print("killlll")
+		state_machine.travel("attack2")
 		
 
 func hit(amount):
 	self.health -= amount
 	print(self.health)
 	emit_signal("player_hit", self.health)
-
-func animate(x, y):
-	if x == 1:
-		$AnimatedSprite.set_animation("move_right")
-	if x == -1:
-		$AnimatedSprite.set_animation("move_left")
-	if y == 1:
-		$AnimatedSprite.set_animation("move_down")
-	if y == -1:
-		$AnimatedSprite.set_animation("move_up")

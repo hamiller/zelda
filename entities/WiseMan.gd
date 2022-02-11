@@ -6,13 +6,11 @@ var sword_found = false
 var dialoguePopup
 
 func _ready():
-	dialoguePopup = get_parent().get_node("CanvasLayer/DialogPopup")
+	dialoguePopup = get_parent().get_node("HUD/DialogPopup")
 
-func _input(event):
-	if event.is_action_pressed("hack_and_slay"):
-		print("NPC geklickt")
-		dialoguePopup.close()
-	
 func talk():
-	dialoguePopup.dialog = "Hallo lieber Spieler!"
-	dialoguePopup.open()
+	print(dialoguePopup)
+	if !dialoguePopup.is_visible_in_tree():
+		print("NPC angesprochen")
+		dialoguePopup.dialog = "Hallo lieber Spieler!"
+		dialoguePopup.open()

@@ -266,12 +266,15 @@ anims/run = SubResource( 8 )
 position = Vector2( -2, 5 )
 shape = SubResource( 9 )
 
-[node name="Camera2D" type="Camera2D" parent="Adventurer"]
-current = true
-process_mode = 0
-
 [node name="AnimationTree" type="AnimationTree" parent="Adventurer"]
 tree_root = SubResource( 27 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 28 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Adventurer"]
+position = Vector2( -2, 5 )
+cast_to = Vector2( 8, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="Adventurer"]
+current = true
