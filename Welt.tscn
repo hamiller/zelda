@@ -55,7 +55,7 @@ position = Vector2( 880, 116 )
 position = Vector2( 208, 392 )
 
 [node name="WiseMan" parent="." instance=ExtResource( 7 )]
-position = Vector2( 520, 120 )
+position = Vector2( 96, 144 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -102,3 +102,4 @@ __meta__ = {
 position = Vector2( 216, 0 )
 
 [connection signal="habe_gehauen" from="Player" to="." method="_on_Player_habe_gehauen"]
+[connection signal="player_hit" from="Player" to="HUD/health bar" method="_on_Player_player_hit"]

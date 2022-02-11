@@ -5,4 +5,4 @@ func set_value(hearts):
 		$health.get_child(i).visible = i < hearts
 
 func _on_Player_player_hit(health):
-	self.set_value(health) 
+	set_value(health) 

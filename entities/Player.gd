@@ -1,41 +1,47 @@
 extends KinematicBody2D
 
 const MAX_SPEED = 200
+
 signal habe_gehauen
+signal player_hit
+
+var health = 5
 var state_machine 
 var _position_last_frame := Vector2()
 var _cardinal_direction = 0
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	state_machine = $AnimationTree.get("parameters/playback")
-	print("Ich existiere!")
 	
-
 func _physics_process(_delta):
 	var current = state_machine.get_current_node()
 	var vector = Vector2.ZERO
 	var hitting
 	if Input.is_action_pressed("up_pressed"):
 		vector.y += -1
-		state_machine.travel("walk_up")
 	if Input.is_action_pressed("down_pressed"):
 		vector.y += 1
-		state_machine.travel("walk_down")
 	if Input.is_action_pressed("left_pressed"):
 		vector.x += -1
-		state_machine.travel("walk_left")
 	if Input.is_action_pressed("right_pressed"):
 		vector.x += 1
-		state_machine.travel("walk_right")
 	if vector.length() == 0 && hitting == false:
 		state_machine.stop()
 	vector = vector.normalized()
 	
+	if vector != Vector2.ZERO:
+		$RayCast2D.cast_to = vector * 8
+	
+	animate(vector.x, vector.y)
 	move_and_slide(vector * MAX_SPEED)
 
 func _input(event):
+	var hitting
 	if event.is_action_pressed("hack_and_slay"):
 		emit_signal("habe_gehauen")
+		hitting = true
+		hit_him()
+		print("aaaaaaaaaaaaa")
 		var target = $RayCast2D.get_collider()
 		if target != null:
 			if target.is_in_group("NPC"):
@@ -79,14 +85,17 @@ func hit_him():
 
 func hit(dmg):
 	print("Spieler wurde getroffen", dmg)
+	health -= dmg
+	emit_signal("player_hit", health)
 
 func animate(x, y):
+	var current = state_machine.get_current_node()
 	if x == 1:
-		$AnimatedSprite.set_animation("move_right")
+		state_machine.travel("walk_right")
 	if x == -1:
-		$AnimatedSprite.set_animation("move_left")
+		state_machine.travel("walk_left")
 	if y == 1:
-		$AnimatedSprite.set_animation("move_down")
+		state_machine.travel("walk_down")
 	if y == -1:
-		$AnimatedSprite.set_animation("move_up")
+		state_machine.travel("walk_up")
 
