@@ -6,11 +6,7 @@ signal player_vector
 signal player_hit
 
 var health = 5
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Ich existiere!")
 	
-
 func _physics_process(_delta):
 	var vector = Vector2.ZERO
 	if Input.is_action_pressed("up_pressed"):
@@ -24,18 +20,29 @@ func _physics_process(_delta):
 	
 	vector = vector.normalized()
 	
+	if vector != Vector2.ZERO:	
+		$RayCast2D.cast_to = vector * 8
+	
 	animate(vector.x, vector.y)
 	move_and_slide(vector * MAX_SPEED)
 	
 	
 func _input(event):
 	if event.is_action_pressed("hack_and_slay"):
-		print("killlll!!!!")
 		emit_signal("habe_gehauen")
+		var target = $RayCast2D.get_collider()
+		if target != null:
+			print(target)
+			if target.is_in_group("NPC"):
+				target.talk()
+				return
+			if target.is_in_group("ENEMY"):
+				return
+				
 
 func hit(amount):
 	self.health -= amount
-	print(self.health)
+	print("ups, erwischt: ", self.health)
 	emit_signal("player_hit", self.health)
 
 func animate(x, y):

@@ -11,7 +11,7 @@ region = Rect2( 1, 0, 15, 22 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 10 )
 
-[node name="WiseMan" type="KinematicBody2D" groups=["NPC"]]
+[node name="WiseMan" type="StaticBody2D" groups=["NPC"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

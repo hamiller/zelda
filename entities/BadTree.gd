@@ -35,10 +35,6 @@ func animate(x, y):
 		if y < 0:
 			$AnimatedSprite.set_animation("move_up")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_HitRadius_body_entered(body):
 	if body.name == 'Player':

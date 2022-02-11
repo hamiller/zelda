@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/BadTree.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Welt.gd" type="Script" id=3]
+[ext_resource path="res://DialogPopup.gd" type="Script" id=4]
 [ext_resource path="res://tiles/well.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/health bar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/WiseMan.tscn" type="PackedScene" id=7]
@@ -26,7 +27,48 @@ position = Vector2( 226, 111 )
 [node name="health bar" parent="." instance=ExtResource( 6 )]
 
 [node name="WiseMan" parent="." instance=ExtResource( 7 )]
-position = Vector2( 40, 32 )
+position = Vector2( 56, 21 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogPopup" type="Popup" parent="CanvasLayer"]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+popup_exclusive = true
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialogPopup"]
+margin_left = 10.0
+margin_top = 115.0
+margin_right = 310.0
+margin_bottom = 165.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCName" type="Label" parent="CanvasLayer/DialogPopup"]
+margin_left = 13.0
+margin_top = 116.0
+margin_right = 81.0
+margin_bottom = 130.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "NPC Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="Label" parent="CanvasLayer/DialogPopup"]
+margin_left = 13.0
+margin_top = 132.0
+margin_right = 303.0
+margin_bottom = 163.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Hallo. Draussen kann es gefährlich sein. Hier, nimm dies!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="habe_gehauen" from="Player" to="." method="_on_Player_habe_gehauen"]
 [connection signal="player_hit" from="Player" to="health bar" method="_on_Player_player_hit"]
